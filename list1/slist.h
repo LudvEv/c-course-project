@@ -22,14 +22,14 @@ struct slist
 {
     int list_size;
     pslist_entry head;
-};
+};	
 
 /*
  * Creates an empty list
  * Params: none
  * Return pointer to the list
  */
-pslist_entry slist_new(void);
+pslist slist_new(void);
 
 
 /*

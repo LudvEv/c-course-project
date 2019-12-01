@@ -37,7 +37,7 @@ int test3()
     slist_remove(list, 1);
     slist_remove(list, 6);
     slist_remove(list, 4);
-    int result = (list->list_size != 1)
+    int result = (list->list_size != 1);
     if (list->list_size != 1) {
         result = -1;
     }
@@ -50,6 +50,11 @@ int test3()
 
 int main(void)
 {
-    printf("%d %d %d",test1() test2() test3());
+    printf("Test1: \n");
+    test1();
+    printf("Test2: \n");
+    test2();
+    printf("Test3: \n");
+    test3();
     return 0;
 }
