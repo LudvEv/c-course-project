@@ -8,7 +8,7 @@
 
 #include "slist.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 //create an empty list
 pslist slist_new(void)
 {
