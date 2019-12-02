@@ -32,11 +32,17 @@ int test3()
 {
     pslist list = slist_new();
     slist_insert(list, 4);
+    slist_print(list);
     slist_insert(list, 5);
+    slist_print(list);
     slist_insert(list, 4);
+    slist_print(list);
     slist_remove(list, 1);
+    slist_print(list);
     slist_remove(list, 6);
+    slist_print(list);
     slist_remove(list, 4);
+    slist_print(list);
     int result = (list->list_size != 1);
     if (list->list_size != 1) {
         result = -1;

@@ -4,11 +4,12 @@
 //
 //  Created by Панышев Александр Сергеевич on 24.11.2019.
 //  Copyright © 2019 Панышев Александр Сергеевич. All rights reserved.
-//ls
+//
 
 #include "slist.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 //create an empty list
 pslist slist_new(void)
 {
@@ -40,7 +41,7 @@ void slist_delete(pslist list)
 //insert value in head of list
 int slist_insert(pslist list, int value)
 {
-    struct slist_entry *pnew = malloc(sizeof(struct slist_entry));
+    pslist_entry pnew = malloc(sizeof(struct slist_entry));
     if (pnew == NULL)
         return -1;
     pnew->next = list->head;
@@ -50,6 +51,7 @@ int slist_insert(pslist list, int value)
     return 0;
 }
 
+//remove all elements with my value
 int slist_remove(pslist list, int value)
 {
     pslist_entry pcurrent = list->head;
