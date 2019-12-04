@@ -54,6 +54,16 @@ int test3()
     return result;
 }
 
+int test4()
+{
+    pslist list;
+    list = slist_new();
+    printf("List created! %p\n", list);
+    slist_print(list);
+    slist_delete(list);
+    return 0;
+}
+
 int main(void)
 {
     printf("Test1: \n");
@@ -62,5 +72,7 @@ int main(void)
     test2();
     printf("Test3: \n");
     test3();
+    printf("Test4: \n");
+    test4();
     return 0;
 }
