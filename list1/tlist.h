@@ -30,7 +30,7 @@ struct tlist
  * Params: none
  * Return pointer to the list
  */
-pslist tlist_new(void);
+ptlist tlist_new(void);
 
 
 /*
