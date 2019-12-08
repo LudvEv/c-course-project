@@ -59,8 +59,10 @@ int unshift(ptlist list, int value)
 int shift(ptlist list, int* pointer)
 {
     if (list->list_size == 0)
+    {
         printf("list is empty, nothing to extract");
         return 0;
+    }
     *pointer = list->head->value;
     return 1;
 }
@@ -86,8 +88,10 @@ int push(ptlist list, int value)
 int pop(ptlist list, int* pointer)
 {
     if (list->list_size == 0)
+    {
         printf("list is empty, nothing to extract");
         return 0;
+    }
     *pointer = list->tail->value;
     return 1;
 }

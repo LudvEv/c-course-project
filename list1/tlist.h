@@ -14,6 +14,7 @@ typedef struct tlist *ptlist;
 struct tlist_entry
 {
     ptlist_entry next;
+    ptlist_entry prev;
     int value;
 };
 
