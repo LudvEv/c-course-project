@@ -14,6 +14,7 @@ typedef struct tlist *ptlist;
 struct tlist_entry
 {
     ptlist_entry next;
+    ptlist_entry prev;
     int value;
 };
 
@@ -83,5 +84,13 @@ int push(ptlist list, int value);
  *          0 - not success
  */
 int reverse(ptlist list);
+
+/*
+ * Prints all list items
+ * Params: list - pointer to the list
+ * Returns: none
+ */
+void tlist_print(ptlist list);
+
 
 
