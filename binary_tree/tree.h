@@ -11,7 +11,7 @@ typedef struct _bin_tree
 {
 	int key;
 	double value;
-	pbin_tree left, right;
+	pbin_tree parent, left, right;
 } bin_tree;
 
 /*

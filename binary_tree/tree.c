@@ -14,6 +14,7 @@ pbin_tree init_tree(void)
 	tree->value = NULL;
 	tree->left = NULL;
 	tree->right = NULL;
+	tree->parent = NULL;
 	return tree;
 }
 
@@ -28,11 +29,24 @@ void destroy_tree(pbin_tree tree)
 }
 
 
+pbin_tree TreeMax(pbin_tree tree)
+{
+	pbin_tree p = tree;
+	while (p->right)
+		p = p->right;
+	return p;
+}
+
+pbin_tree TreeMin(pbin_tree tree)
+{
+	pbin_tree p = tree;
+	while (p->left)
+		p = p->left;
+	return p;
+}
 
 int tree_insert(pbin_tree tree, int key, double value)
 {
-	
-
 	if (tree == NULL)
 	{
 		pbin_tree temptree = malloc(sizeof(struct bin_tree));
@@ -42,6 +56,7 @@ int tree_insert(pbin_tree tree, int key, double value)
 		temptree->value = value;
 		temptree->left = NULL;
 		temptree->right = NULL;
+		temptree->parent = NULL;
 		tree = temptree;
 		return 0;
 	}
@@ -53,17 +68,30 @@ int tree_insert(pbin_tree tree, int key, double value)
 	}
 	if (tree->key < key)
 		tree_insert(tree->right, key, value);
-	if (tree->key > key)
+	if (tree->key >= key)
 		tree_insert(tree->left, key, value);
-	if (tree->key == key)
-	{
-		printf("An item with this key already exists!");
-		return 0;
-	}
+	
 	return 0;
 }
 
 int tree_remove(pbin_tree tree, int key)
 {
+	if (tree->key == key)
+	{
+
+	}
+	else if (tree->key > key)
+	{
+		tree_remove(tree->left, key);
+	}
+	else 
+		tree_remove(tree->right, key);
 	return NULL;
 }
+
+
+
+
+
+
+
