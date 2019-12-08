@@ -29,9 +29,28 @@ pbin_tree init_tree(void);
 void destroy_tree(pbin_tree tree);
 
 
+/*
+ * Find max node in tree
+ * Params: tree - pointer to the tree
+ * Return pointer to the list
+ */
+pbin_tree TreeMax(pbin_tree tree);
+
+
+/*
+ * Find min node in tree
+ * Params: tree - pointer to the tree
+ * Return pointer to the list
+ */
+pbin_tree TreeMax(pbin_tree tree);
 
 
 int tree_insert(pbin_tree tree, int key, double value);
 
 
-int tree_remove(pbin_tree tree, int key);
+
+pbin_tree TreeSearchRec(pbin_tree tree, int key);
+
+pbin_tree NodeRemove(pbin_tree tree, int key);
+
+int BreadthWalk(pbin_tree r, int n);

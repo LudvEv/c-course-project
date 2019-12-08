@@ -60,9 +60,5 @@ int slist_insert(pslist list, int value);
 int slist_remove(pslist list, int value);
 
 
-/*
- * Prints all list items
- * Params: list - pointer to the list
- * Returns: none
- */
+
 void slist_print(pslist list);

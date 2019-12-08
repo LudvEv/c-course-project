@@ -1,6 +1,6 @@
 //
 //  slist.c
-//  hardString
+//  
 //
 //  Created by Панышев Александр Сергеевич on 24.11.2019.
 //  Copyright © 2019 Панышев Александр Сергеевич. All rights reserved.
