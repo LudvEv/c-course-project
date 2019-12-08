@@ -85,4 +85,12 @@ int push(ptlist list, int value);
  */
 int reverse(ptlist list);
 
+/*
+ * Prints all list items
+ * Params: list - pointer to the list
+ * Returns: none
+ */
+void tlist_print(ptlist list);
+
+
 
