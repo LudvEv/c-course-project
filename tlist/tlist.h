@@ -13,17 +13,17 @@ typedef struct tlist *ptlist;
 
 struct tlist_entry
 {
-    ptlist_entry next;
-    ptlist_entry prev;
-    int value;
+	ptlist_entry next;
+	ptlist_entry prev;
+	int value;
 };
 
 struct tlist
 {
-    int list_size;
-    ptlist_entry head;
-    ptlist_entry tail;
-};	
+	int list_size;
+	ptlist_entry head;
+	ptlist_entry tail;
+};
 
 /*
  * Creates an empty list
@@ -83,7 +83,7 @@ int push(ptlist list, int value);
  * Returns: 1 - success
  *          0 - not success
  */
-int reverse(ptlist list);
+void reverse(ptlist list);
 
 /*
  * Prints all list items

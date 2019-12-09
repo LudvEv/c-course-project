@@ -54,7 +54,7 @@ void tlist_delete_elements(ptlist list)
 //insert value in top of list
 int unshift(ptlist list, int value)
 {
-    ptlist_entry pnew = malloc(sizeof(struct list_entry));
+    ptlist_entry pnew = malloc(sizeof(struct tlist_entry));
     if (pnew == NULL)
         return 0;
     pnew->next = list->head;
@@ -83,7 +83,7 @@ int shift(ptlist list, int* pointer)
 //insert value in the end of list
 int push(ptlist list, int value)
 {
-    ptlist_entry pnew = malloc(sizeof(struct list_entry));
+    ptlist_entry pnew = malloc(sizeof(struct tlist_entry));
     if (pnew == NULL)
         return 0;
     pnew->prev = list->tail;
@@ -114,7 +114,7 @@ void reverse(ptlist list)
 {
     int i, temp;
     ptlist temp_list = tlist_new();
-    for (i = 0; i < *list->list_size; i++)
+    for (i = 0; i < list->list_size; i++)
     {
         shift(list, &temp);
         unshift(temp_list, temp);
