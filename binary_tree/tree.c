@@ -84,33 +84,46 @@ pbin_tree NodeRemove(pbin_tree tree, int key)
 	return q;
 }
 
-int tree_insert(pbin_tree tree, int key, double value)
+pbin_tree tree_insert(pbin_tree tree, int key, double value)
 {
-	if (tree == NULL)
-	{
-		pbin_tree temptree = (pbin_tree)malloc(sizeof(bin_tree));
-		if (!temptree)
-			return -1;
-		temptree->key = key;
-		temptree->value = value;
-		temptree->left = NULL;
-		temptree->right = NULL;
-		temptree->parent = NULL;
-		tree = temptree;
-		return 0;
-	}
-	if (tree->key == 0)
-	{
-		tree->key = key;
-		tree->value = value;
-		return 0;
-	}
-	if (tree->key < key)
-		tree_insert(tree->right, key, value);
-	if (tree->key >= key)
-		tree_insert(tree->left, key, value);
-	
-	return 0;
+    pbin_tree q = tree, p;
+    pbin_tree node = init_tree();
+    if (!node)
+        return -1;
+    node->key = key;
+    node->value = value;
+    if(!tree)
+    {
+        tree=node;
+        tree->parent=0;
+        tree->left=0;
+        tree->right=0;
+        return tree;
+    } // if
+    while(q)
+    {
+        p=q;
+        if(node->key < p->key)
+        {
+            q=p->left;
+            if(!q)
+            {
+                p->left=node;
+                node->parent=p;
+            }
+            
+        }// if else
+        {
+            q=p->right;
+            if(!q)
+            {
+                p->right=node;
+                node->parent=p;
+                
+            }
+        }// else
+    } //while
+    return p;
 }
 
 
