@@ -17,7 +17,7 @@ typedef struct _bin_tree
 /*
  * Creates an empty tree
  * Params: none
- * Return pointer to the list
+ * Return pointer to the tree
  */
 pbin_tree init_tree(void);
 
@@ -32,7 +32,7 @@ void destroy_tree(pbin_tree tree);
 /*
  * Find max node in tree
  * Params: tree - pointer to the tree
- * Return pointer to the list
+ * Return pointer to the node
  */
 pbin_tree TreeMax(pbin_tree tree);
 
@@ -40,17 +40,30 @@ pbin_tree TreeMax(pbin_tree tree);
 /*
  * Find min node in tree
  * Params: tree - pointer to the tree
- * Return pointer to the list
+ * Return pointer to the node
  */
-pbin_tree TreeMax(pbin_tree tree);
+pbin_tree TreeMin(pbin_tree tree);
 
 
+/*
+ * Adds an item in the tree
+ * Params: tree - pointer to the tree
+ *         key - key of the item
+ *		   value - value of the item
+ * Returns: point to the updated tree
+ */
 int tree_insert(pbin_tree tree, int key, double value);
 
 
+/*
+ * Deletes a tree element 
+ * Params: list - pointer to the list
+ *         value - deleted value
+ * Returns: point to the updated tree
+ */
+pbin_tree NodeRemove(pbin_tree tree, int key);
 
 pbin_tree TreeSearchRec(pbin_tree tree, int key);
 
-pbin_tree NodeRemove(pbin_tree tree, int key);
 
 int BreadthWalk(pbin_tree r, int n);
