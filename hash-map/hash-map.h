@@ -6,17 +6,17 @@
 //
 
 #pragma once
-#define N 16
+#define N 1024
 
 //Forward declaration
 
 typedef struct _ENTRY
 {
-void* address;
-char* function_name;
+	char* name;
+	long int* number;
 } ENTRY, *PENTRY;
 
-ENTRY g_hash_map[N];
+PENTRY hash_map[N];
 
 /*
  * Creates an empty hash_map
@@ -37,18 +37,11 @@ void hash_map_deinit(void);
  * Params:pointer to address and to function_name
  * Returns index of element
  */
-unsigned int add(void* address, char* function_name);
-
-/*
- * Removes element
- * Params:pointer to address
- * Returns -1 if unsucces and 0 if success
- */
-unsigned int remove(void* address);
+void add(char* name, int* number);
 
 /*
  * Finds an element by addres
  * Params:pointer to address
  * Returns index of element
  */
-PENTRY find(void* address);
+void find(char* name);
