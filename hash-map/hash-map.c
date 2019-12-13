@@ -5,11 +5,31 @@
 #include "Header.h"
 
 
-ENTRY g_hash_map[N];
+ENTRY hash_map[N];
 
-int hash(unsigned long long int key)
+int exp(int n) 
 {
-return key ^ N;
+	long long int exp = 1;
+
+	while (n > 0)
+	{
+		exp = exp * 10;
+		n--;
+	}
+	return exp;
+}
+
+int hash(char* key)
+{
+	long long int int_key = 0;
+	int  i = 0;
+	
+	while (('A' >= key[i]) & (key[i] <= 'Z')) 
+	{
+		int_key += key[i] * exp(i);
+		i++;
+	}
+	return int_key ^ N;
 }
 
 void hash_map_init(void)
@@ -22,51 +42,29 @@ void hash_map_deinit(void)
 	int i = 0;
 	for (i = 0; i < N; i++)
 	{
-		if (NULL != g_hash_map[i]->function_name)
-			free(g_hash_map[i]->function_name);
+		if (NULL != hash_map[i]->number)
+		{
+			free(hash_map[i]->number);
+			free(hash_map[i]->name);
+		}
 	}
 }
 
-char* make_str(char* str)
+unsigned int add(char* name, int* number)
 {
-	char* new_str = (char *)malloc(strlen(str) + 1);
-	if (NULL == new_str)
+	unsigned int index = hash(name) % N;
+	if (NULL != hash_map[index]->name)
 	{
-		return NULL;
-	}
-	strcpy(new_str, str);
-	return new_str;
-}
-
-unsigned int add(void* address, char* function_name)
-{
-	unsigned int index = hash(address);
-	if (NULL != g_hash_map[index]->address)
-	{
-		printf("Collision!\n");
+		printf("Changed. Old value = %d\n", hash_map[index]->number);
 		return -1;
 	}
-	g_hash_map[index]->address = address;
-	g_hash_map[index]->function_name = make_str(function_name);
+	hash_map[index]->name = name;
+	hash_map[index]->number = number;
 	return index;
 }
 
-unsigned int del(void* address)
+PENTRY find(void* name)
 {
-	unsigned int index = hash(address);
-	if (NULL == g_hash_map[index]->address)
-	{
-		return -1;
-	}
-	g_hash_map[index]->address = NULL;
-	if (NULL != g_hash_map[index]->function_name)
-	free(g_hash_map[index]->function_name);
-	g_hash_map[index]->function_name = NULL;
-	return 0;
-}
-
-PENTRY find(void* address)
-{
-	unsigned int index = hash(address);
-	return (NULL != g_hash_map[index]->address) ? &g_hash_map[index] : NULL;
+	unsigned int index = hash(address) % n;
+	return (NULL != hash_map[index]->name) ? &hash_map[index->number] : NO;
 }
