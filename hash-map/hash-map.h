@@ -12,11 +12,11 @@
 
 typedef struct _ENTRY
 {
-char* name;
-long int* number;
+	char* name;
+	long int* number;
 } ENTRY, *PENTRY;
 
-ENTRY hash_map[N];
+PENTRY hash_map[N];
 
 /*
  * Creates an empty hash_map
@@ -37,11 +37,11 @@ void hash_map_deinit(void);
  * Params:pointer to address and to function_name
  * Returns index of element
  */
-unsigned int add(void* address, char* function_name);
+void add(char* name, int* number);
 
 /*
  * Finds an element by addres
  * Params:pointer to address
  * Returns index of element
  */
-PENTRY find(void* address);
+void find(char* name);
