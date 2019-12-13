@@ -2,12 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Header.h"
+#include "hash_map.h"
 
 
-ENTRY hash_map[N];
+PENTRY hash_map[N];
 
-int exp(int n) 
+long long int exp(int n)
 {
 	long long int exp = 1;
 
@@ -19,12 +19,12 @@ int exp(int n)
 	return exp;
 }
 
-int hash(char* key)
+long long int hash(char* key)
 {
 	long long int int_key = 0;
 	int  i = 0;
-	
-	while (('A' >= key[i]) & (key[i] <= 'Z')) 
+
+	while (('A' >= key[i]) & (key[i] <= 'Z'))
 	{
 		int_key += key[i] * exp(i);
 		i++;
@@ -50,21 +50,21 @@ void hash_map_deinit(void)
 	}
 }
 
-unsigned int add(char* name, int* number)
+void add(char* name, int* number)
 {
 	unsigned int index = hash(name) % N;
 	if (NULL != hash_map[index]->name)
-	{
-		printf("Changed. Old value = %d\n", hash_map[index]->number);
-		return -1;
-	}
+		printf("Changed. Old value = %li\n", *(hash_map[index]->number));
+	else printf("OK");
 	hash_map[index]->name = name;
 	hash_map[index]->number = number;
-	return index;
 }
 
-PENTRY find(void* name)
+void find(char* name)
 {
-	unsigned int index = hash(address) % n;
-	return (NULL != hash_map[index]->name) ? &hash_map[index->number] : NO;
+	unsigned int index = hash(name) % N;
+	if (NULL != hash_map[index]->name)
+		printf("%li", *(hash_map[index]->number));
+	else printf("NO");
+	
 }
