@@ -2,12 +2,17 @@
 #include "tree.h"
 
 
-int main(int argc, char const *argv[])
+int main(void)
 {
-	pbin_tree tree;
-	tree = init_tree();
-	int a;
-	a = tree_insert(tree, 2, 1);
-	a = BreadthWalk(tree, 1);
-	return 0;
+    pbin_tree tree = init_tree();
+    tree_insert(tree, 5, 2);
+    tree_insert(tree, 1, 2);
+    tree_insert(tree, 3, 2);
+    tree_insert(tree, 6, 2);
+    printf("%d\n>>>>>>>\n", CountTree(tree));
+    dfs(tree);
+    printf(">>>>>>>>\n");
+    wfs(tree);
+     
+    return 0;
 }
