@@ -69,7 +69,7 @@ int slist_remove(pslist list, int value)
             else
             {
                 pcurrent = list->head;
-                while (pcurrent != NULL)
+                while (pcurrent->next != NULL)
                 {
                     if (pcurrent->next->next == NULL)
                     {
