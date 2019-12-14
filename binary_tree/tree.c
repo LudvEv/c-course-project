@@ -19,14 +19,14 @@ pbin_tree initTree(void)
 	return tree;
 }
 
-pbin_tree destroyTree(pbin_tree tree)
+void destroyTree(pbin_tree tree)
 {
     if(!tree)
-        return NULL;
+        return;
     destroyTree(tree->left);
     destroyTree(tree->right);
     free(tree);
-    return tree;
+
 }
 
 

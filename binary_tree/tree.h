@@ -22,13 +22,11 @@ typedef struct _bin_tree
 pbin_tree initTree(void);
 
 /*
- * Deletes litreest and all the elements
+ * Deletes tree and all the elements
  * Params: tree - pointer to the tree
  * Returns none
  */
-pbin_tree destroyTree(pbin_tree tree);
-
-
+void destroyTree(pbin_tree tree);
 
 /*
  * Adds an item in the tree
@@ -41,12 +39,12 @@ pbin_tree treeInsert(pbin_tree tree, int key, double value);
 
 
 /*
- * Deletes a tree element 
- * Params: list - pointer to the list
+ * Deletes an item in the tree
+ * Params: tree - pointer to the list
  *         value - deleted value
- * Returns: something
+ * Returns: point to the node
  */
-pbin_tree treeRemove(pbin_tree, int key);
+pbin_tree treeRemove(pbin_tree tree, int key);
 
 /*
  * walk deep
