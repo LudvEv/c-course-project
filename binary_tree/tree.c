@@ -21,7 +21,7 @@ pbin_tree initTree(void)
 
 void destroyTree(pbin_tree tree)
 {
-    if(!tree)
+    if (!tree)
         return;
     destroyTree(tree->left);
     destroyTree(tree->right);
@@ -32,7 +32,7 @@ void destroyTree(pbin_tree tree)
 
 int treeInsert(pbin_tree tree, int key, double value)
 {
-    if(tree->key == NULL)
+    if (tree->key == 0)
     {
         tree->key = key;
         tree->value = value;
@@ -47,26 +47,26 @@ int treeInsert(pbin_tree tree, int key, double value)
         return -1;
     node->key = key;
     node->value = value;
-    while(q)
+    while (q)
     {
-        p=q;
+        p = q;
         if(node->key < p->key)
         {
-            q=p->left;
-            if(!q)
+            q = p->left;
+            if (!q)
             {
-                p->left=node;
-                node->parent=p;
+                p->left = node;
+                node->parent = p;
             }
             
         }// if
-        else
+        if(node->key > p->key)
         {
-            q=p->right;
-            if(!q)
+            q = p->right;
+            if (!q)
             {
-                p->right=node;
-                node->parent=p;
+                p->right = node;
+                node->parent = p;
                 
             }
         }// else
@@ -108,47 +108,51 @@ int dfs(pbin_tree tree)
     return 0;
 }
 
-int wfs(pbin_tree r)
+int CountTree(pbin_tree p) 
 {
-    int n = CountTree(r);
-    pbin_tree p=r,s;
-    int i=-1;
-    int head=0, tail=0;
-    if(!p)
+    if (!p)
+        return 0;
+    return CountTree(p->left) + CountTree(p->right)+1;
+}
+
+int wfs(pbin_tree tree)
+{
+    int n = CountTree(tree);
+    pbin_tree p = tree, s;
+    int i = -1;
+    int head = 0, tail = 0;
+    if (!p)
         return i;
-    s=(pbin_tree)malloc(sizeof(pbin_tree)*n);
+    s = (pbin_tree)malloc(sizeof(bin_tree) * n);
     s[tail++] = *p;
-    while(head!=tail)
+    while (head!=tail)
     {
         p = &(s[head++]);
         myprocessng(p);
-        if(p->left)
-            s[tail++]=*(p->left);
-        if(p->right)
-            s[tail++]=*(p->right);
+        if (p->left)
+            s[tail++] = *(p->left);
+        if (p->right)
+            s[tail++] = *(p->right);
     } // while
+    free(s);
     return i;
 }
 
-int CountTree(pbin_tree p) {
-    if(!p)
-        return 0;
-    return CountTree(p->left)+CountTree(p->right)+1;
-}
+
 
 pbin_tree TreeMin(pbin_tree tree)
 {
-    pbin_tree p=tree;
-    while(p->left)
-        p=p->left;
+    pbin_tree p = tree;
+    while (p->left)
+        p = p->left;
     return p;
 }
 
 pbin_tree TreeMax(pbin_tree tree)
 {
-    pbin_tree p=tree;
-    while(p->right)
-        p=p->right;
+    pbin_tree p = tree;
+    while (p->right)
+        p = p->right;
     return p;
 }
 
@@ -158,9 +162,9 @@ pbin_tree TreeJointLeft(pbin_tree a, pbin_tree b) {
         return b;
     if (!b)
         return a;
-    p=TreeMax(a);
+    p = TreeMax(a);
     
-    if(!(p->key < b->key))
+    if (!(p->key < b->key))
         return 0;
     p->parent->right = 0;
     p->parent = 0;
@@ -172,12 +176,12 @@ pbin_tree TreeJointLeft(pbin_tree a, pbin_tree b) {
 pbin_tree TreeSearchIter(pbin_tree tree, int key)
 {
     pbin_tree p;
-    for(p=tree; !p || key != p->key;)
+    for (p=tree; !p || key != p->key;)
     {
-        if(key < tree->key)
-            p=p->left;
+        if (key < tree->key)
+            p = p->left;
         else
-            p=p->right;
+            p = p->right;
     } //for
     return p;
 }
@@ -185,12 +189,12 @@ pbin_tree TreeSearchIter(pbin_tree tree, int key)
 int treeRemove(pbin_tree tree, int key)
 {
     pbin_tree p, q, a, b;
-    if(!tree)
+    if (!tree)
         return 0;
-    p=TreeSearchIter(tree, key);
-    a=p->left;
-    b=p->right;
-    q=TreeJointLeft(a, b);
+    p = TreeSearchIter(tree, key);
+    a = p->left;
+    b = p->right;
+    q = TreeJointLeft(a, b);
     if (p->parent->left == p)
     {
         p->parent->left = q;

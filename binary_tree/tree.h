@@ -62,3 +62,9 @@ int dfs(pbin_tree tree);
  			-1 if tree is empty
  */
 int wfs(pbin_tree tree);
+
+/*
+ * Params: list - pointer to the list
+ * Returns: amount an elements
+ */
+int CountTree(pbin_tree p);
