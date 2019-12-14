@@ -55,6 +55,7 @@ int slist_insert(pslist list, int value)
 int slist_remove(pslist list, int value)
 {
     pslist_entry pcurrent = list->head;
+    pslist_entry q;
     int count = 0;
     while (pcurrent != NULL)
     {
@@ -62,9 +63,10 @@ int slist_remove(pslist list, int value)
         {
             if (pcurrent->next != NULL)
             {
+                q = pcurrent->next;
                 pcurrent->value = pcurrent->next->value;
                 pcurrent->next = pcurrent->next->next;
-                free(pcurrent->next);
+                free(q);
             }
             else
             {
