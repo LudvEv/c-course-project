@@ -35,7 +35,7 @@ void destroyTree(pbin_tree tree);
  *		   value - value of the item
  * Returns: point to the node
  */
-pbin_tree treeInsert(pbin_tree tree, int key, double value);
+int treeInsert(pbin_tree tree, int key, double value);
 
 
 /*
@@ -44,7 +44,7 @@ pbin_tree treeInsert(pbin_tree tree, int key, double value);
  *         value - deleted value
  * Returns: point to the node
  */
-pbin_tree treeRemove(pbin_tree tree, int key);
+int treeRemove(pbin_tree tree, int key);
 
 /*
  * walk deep

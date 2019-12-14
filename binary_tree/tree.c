@@ -30,7 +30,7 @@ void destroyTree(pbin_tree tree)
 }
 
 
-pbin_tree treeInsert(pbin_tree tree, int key, double value)
+int treeInsert(pbin_tree tree, int key, double value)
 {
     if(tree->key == NULL)
     {
@@ -39,7 +39,7 @@ pbin_tree treeInsert(pbin_tree tree, int key, double value)
         tree->parent = NULL;
         tree->left = NULL;
         tree->right = NULL;
-        return tree;
+        return 1;
     } // if
     pbin_tree q = tree, p;
     pbin_tree node = initTree();
@@ -71,7 +71,7 @@ pbin_tree treeInsert(pbin_tree tree, int key, double value)
             }
         }// else
     } //while
-    return p;
+    return 1;
 }
 
 int max_value(int a, int b)
@@ -182,11 +182,11 @@ pbin_tree TreeSearchIter(pbin_tree tree, int key)
     return p;
 }
 
-pbin_tree treeRemove(pbin_tree tree, int key)
+int treeRemove(pbin_tree tree, int key)
 {
     pbin_tree p, q, a, b;
     if(!tree)
-        return tree;
+        return 0;
     p=TreeSearchIter(tree, key);
     a=p->left;
     b=p->right;
@@ -202,7 +202,7 @@ pbin_tree treeRemove(pbin_tree tree, int key)
     else
         return 0;
     free(p);
-    return q;
+    return 0;
 }
 
 
