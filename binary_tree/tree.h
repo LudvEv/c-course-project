@@ -19,14 +19,14 @@ typedef struct _bin_tree
  * Params: none
  * Return pointer to the tree
  */
-pbin_tree init_tree(void);
+pbin_tree initTree(void);
 
 /*
  * Deletes litreest and all the elements
  * Params: tree - pointer to the tree
  * Returns none
  */
-pbin_tree destroy_tree(pbin_tree tree);
+pbin_tree destroyTree(pbin_tree tree);
 
 
 
@@ -35,20 +35,32 @@ pbin_tree destroy_tree(pbin_tree tree);
  * Params: tree - pointer to the tree
  *         key - key of the item
  *		   value - value of the item
- * Returns: point to the updated tree
+ * Returns: point to the node
  */
-pbin_tree tree_insert(pbin_tree tree, int key, double value);
+pbin_tree treeInsert(pbin_tree tree, int key, double value);
 
 
 /*
  * Deletes a tree element 
  * Params: list - pointer to the list
  *         value - deleted value
- * Returns: point to the updated tree
+ * Returns: something
  */
+pbin_tree treeRemove(pbin_tree, int key);
 
-
-
+/*
+ * walk deep
+ * Params: list - pointer to the list
+ * Returns: 0 if tree is not empty
+ 			-1 if tree is empty
+ */
 int dfs(pbin_tree tree);
 
+
+/*
+ * walk around
+ * Params: list - pointer to the list
+ * Returns: 0 if tree is not empty
+ 			-1 if tree is empty
+ */
 int wfs(pbin_tree tree);

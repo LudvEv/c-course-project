@@ -4,11 +4,11 @@
 
 int main(void)
 {
-    pbin_tree tree = init_tree();
-    tree_insert(tree, 5, 2);
-    tree_insert(tree, 1, 2);
-    tree_insert(tree, 3, 2);
-    tree_insert(tree, 6, 2);
+    pbin_tree tree = initTree();
+    treeInsert(tree, 5, 2);
+    treeInsert(tree, 1, 2);
+    treeInsert(tree, 3, 2);
+    treeInsert(tree, 6, 2);
     printf("%d\n>>>>>>>\n", CountTree(tree));
     dfs(tree);
     printf(">>>>>>>>\n");

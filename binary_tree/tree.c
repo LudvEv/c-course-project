@@ -6,7 +6,7 @@
 
 
 
-pbin_tree init_tree(void)
+pbin_tree initTree(void)
 {
 	pbin_tree tree = (pbin_tree)malloc(sizeof(bin_tree));
 	if (tree == NULL)
@@ -19,18 +19,18 @@ pbin_tree init_tree(void)
 	return tree;
 }
 
-pbin_tree destroy_tree(pbin_tree tree)
+pbin_tree destroyTree(pbin_tree tree)
 {
     if(!tree)
         return NULL;
-    destroy_tree(tree->left);
-    destroy_tree(tree->right);
+    destroyTree(tree->left);
+    destroyTree(tree->right);
     free(tree);
     return tree;
 }
 
 
-pbin_tree tree_insert(pbin_tree tree, int key, double value)
+pbin_tree treeInsert(pbin_tree tree, int key, double value)
 {
     if(tree->key == NULL)
     {
@@ -42,7 +42,7 @@ pbin_tree tree_insert(pbin_tree tree, int key, double value)
         return tree;
     } // if
     pbin_tree q = tree, p;
-    pbin_tree node = init_tree();
+    pbin_tree node = initTree();
     if (!node)
         return -1;
     node->key = key;
@@ -134,6 +134,75 @@ int CountTree(pbin_tree p) {
     if(!p)
         return 0;
     return CountTree(p->left)+CountTree(p->right)+1;
+}
+
+pbin_tree TreeMin(pbin_tree tree)
+{
+    pbin_tree p=tree;
+    while(p->left)
+        p=p->left;
+    return p;
+}
+
+pbin_tree TreeMax(pbin_tree tree)
+{
+    pbin_tree p=tree;
+    while(p->right)
+        p=p->right;
+    return p;
+}
+
+pbin_tree TreeJointLeft(pbin_tree a, pbin_tree b) {
+    pbin_tree p;
+    if (!a)
+        return b;
+    if (!b)
+        return a;
+    p=TreeMax(a);
+    
+    if(!(p->key < b->key))
+        return 0;
+    p->parent->right = 0;
+    p->parent = 0;
+    p->left = a;
+    p->right = b;
+    return p;
+}
+
+pbin_tree TreeSearchIter(pbin_tree tree, int key)
+{
+    pbin_tree p;
+    for(p=tree; !p || key != p->key;)
+    {
+        if(key < tree->key)
+            p=p->left;
+        else
+            p=p->right;
+    } //for
+    return p;
+}
+
+pbin_tree treeRemove(pbin_tree tree, int key)
+{
+    pbin_tree p, q, a, b;
+    if(!tree)
+        return tree;
+    p=TreeSearchIter(tree, key);
+    a=p->left;
+    b=p->right;
+    q=TreeJointLeft(a, b);
+    if (p->parent->left == p)
+    {
+        p->parent->left = q;
+    }
+    else if (p->parent->right == p)
+    {
+        p->parent->right = q;
+    }
+    else
+        return 0;
+    free(p);
+    return q;
 }
 
 
