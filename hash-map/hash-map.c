@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hash_map.h"
+#include "hash-map.h"
 
 
 PENTRY hash_map[N];
