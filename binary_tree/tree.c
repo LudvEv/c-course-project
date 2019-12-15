@@ -32,7 +32,7 @@ void destroyTree(pbin_tree tree)
 
 int treeInsert(pbin_tree tree, int key, double value)
 {
-    if (tree->key == 0)
+    if(tree->key == NULL)
     {
         tree->key = key;
         tree->value = value;
@@ -47,29 +47,34 @@ int treeInsert(pbin_tree tree, int key, double value)
         return -1;
     node->key = key;
     node->value = value;
-    while (q)
+    while(q)
     {
-        p = q;
+        p=q;
         if(node->key < p->key)
         {
-            q = p->left;
-            if (!q)
+            q=p->left;
+            if(!q)
             {
-                p->left = node;
-                node->parent = p;
+                p->left=node;
+                node->parent=p;
             }
             
         }// if
-        if(node->key > p->key)
+        else if(node->key > p->key)
         {
-            q = p->right;
-            if (!q)
+            q=p->right;
+            if(!q)
             {
-                p->right = node;
-                node->parent = p;
+                p->right=node;
+                node->parent=p;
                 
             }
         }// else
+        else
+        {
+            p->value = node->value;
+            return 1;
+        }
     } //while
     return 1;
 }
