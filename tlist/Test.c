@@ -95,17 +95,17 @@ void test6()
 
 int main(int argc, char const *argv[])
 {
-	printf("Test1 >>>>>>>");
+	printf("Test1 >>>>>>>\n");
 	test1();
-	printf("Test2 >>>>>>>");
+	printf("Test2 >>>>>>>\n");
 	test2();
-	printf("Test3 >>>>>>>");
+	printf("Test3 >>>>>>>\n");
 	test3();
-	printf("Test4 >>>>>>>");
+	printf("Test4 >>>>>>>\n");
 	test4();
-	printf("Test5 >>>>>>>");
+	printf("Test5 >>>>>>>\n");
 	test5();
-	printf("Test6 >>>>>>>");
+	printf("Test6 >>>>>>>\n");
 	test6();
 	return 0;
 }
