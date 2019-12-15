@@ -91,7 +91,39 @@ void test6()
 	tlist_print(list);
 }
 
-
+void task()
+{
+	ptlist list = tlist_new();
+	char a = 0;
+	char c = 0;
+	while (scanf("%c", &a))
+	{
+		if (a == '{' || a == '(')
+		{
+			push(list, &a);
+		}
+		if (a == '}' || a == ')')
+		{
+			pop(list, &c);
+			if (c == '(' && a == '}')
+			{
+				printf("bad");
+				return;
+			}
+			if (c == '{' && a == ')')
+			{
+				printf("bad");
+				return;
+			}
+		}
+	}
+	if (pop(list, &c) == 1)
+	{
+		printf(bad);
+		return;
+	}
+	printf("good");
+}
 
 int main(int argc, char const *argv[])
 {
