@@ -1,3 +1,4 @@
+
 //
 //  tlist.c
 //
@@ -29,11 +30,12 @@ void tlist_delete(ptlist list)
 {
     ptlist_entry head = list->head;
     ptlist_entry tdel;
-    while (NULL != head)
+    while (list->list_size > 0)
     {
         tdel = head;
         head = tdel->next;
         free(tdel);
+        list->list_size--;
     }
     free(list);
 }
@@ -42,11 +44,12 @@ void tlist_delete_elements(ptlist list)
 {
     ptlist_entry head = list->head;
     ptlist_entry tdel;
-    while (NULL != head)
+    while (list->list_size > 0)
     {
         tdel = head;
         head = tdel->next;
         free(tdel);
+        list->list_size--;
     }
 }
 
@@ -60,23 +63,37 @@ int unshift(ptlist list, int value)
     pnew->next = list->head;
     pnew->prev = NULL;
     pnew->value = value;
+
+    list->head = pnew;
+    list->head->prev = pnew->prev;
+    list->head->next = pnew->next;
+    list->head->value = pnew->value;
     if (list->list_size == 0)
         list->tail = pnew;
-    else list->head->prev = pnew;
-    list->head = pnew;
-        list->list_size++;
+    else list->head->next->prev = pnew;
+    list->list_size++;
     return 1;
 }
 
 //extract value of the top of list in pointer
 int shift(ptlist list, int* pointer)
 {
+    ptlist_entry temp;
     if (list->list_size == 0)
     {
         printf("list is empty, nothing to extract");
         return 0;
     }
     *pointer = list->head->value;
+    temp = list->head;
+    temp->next = list->head->next;
+
+    list->head = temp->next;
+    free(temp);
+    list->list_size--;
+    if (list->list_size > 1)
+        list->head->next->prev = NULL;
+
     return 1;
 }
 
@@ -89,23 +106,37 @@ int push(ptlist list, int value)
     pnew->prev = list->tail;
     pnew->next = NULL;
     pnew->value = value;
+    
+    list->tail = pnew;
+    list->tail->prev = pnew->prev;
+    list->tail->next = pnew->next;
+    list->tail->value = pnew->value;
     if (list->list_size == 0)
         list->head = pnew;
-    else list->tail->next = pnew;
-    list->tail = pnew;
-        list->list_size++;
+    else list->tail->prev->next = pnew;
+    list->list_size++;
     return 1;
 }
 
 //extract value of the end of list in pointer
 int pop(ptlist list, int* pointer)
 {
+    ptlist_entry temp;
     if (list->list_size == 0)
     {
         printf("list is empty, nothing to extract");
         return 0;
     }
     *pointer = list->tail->value;
+    temp = list->tail;
+    temp->prev = list->tail->prev;
+    
+    list->tail = temp->prev;
+    free(temp);
+    list->list_size--;
+    if (list->list_size > 1)
+        list->tail->prev->next = NULL;
+    
     return 1;
 }
 
@@ -129,10 +160,14 @@ void reverse(ptlist list)
 void tlist_print(ptlist list)
 {
     ptlist_entry pcurrent = list->head;
-    printf("List: \n");
-    while (NULL != pcurrent)
+    int t = list->list_size;
+
+    printf("List: ");
+    while (t > 0)
     {
-        printf("> %d\n", pcurrent->value);
+        printf("> %d <", pcurrent->value);
         pcurrent = pcurrent->next;
+        t--;
     }
+    printf("\n");
 }
