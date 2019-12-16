@@ -15,17 +15,17 @@ void task()
 	char* name = (char*)malloc(sizeof(char) * MAXSTR);
 	char* number = (char*)malloc(sizeof(char) * MAXSTR);
 
-	while (scanf("%[^' '||\n]%*c", command))
+	while (scanf("%[^' ']%*c", command))
 	{
 		if (command == "INSERT")
 		{
-			scanf("%[^' '||\n]%*c", name);
-			scanf("%[^' '||\n]%*c", number);
+			scanf("%[^' ']%*c", name);
+			scanf("%[^' ']%*c", number);
 			add(name, number);
 		}
 		else if (command == "FIND")
 		{
-			scanf("%[^' '||\n]%*c", name);
+			scanf("%[^' ']%*c", name);
 			find(name);
 		}
 		else
